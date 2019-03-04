@@ -5,7 +5,9 @@ module.exports = {
     }
 };
 
-async function oakScraper(page, url) {
+async function oakScraper(puppeteer, url) {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
     console.log('Navigating to page ' + url);
     await page.goto(url);
     await page.waitForSelector('a.paginate_button.next'); // Waits for table to be available
@@ -46,7 +48,6 @@ async function oakScraper(page, url) {
         scrapeResults = [...scrapeResults, ...partialResults];
 
         try {
-
             let nextUrl = await page.evaluate(() => {
                 let nextPageLink = document.querySelector('a.paginate_button.next');
                 let linkUrl = nextPageLink.getAttribute('href');
@@ -64,6 +65,6 @@ async function oakScraper(page, url) {
         }
     }
 
-    browser.close();
+    await browser.close();
     return scrapeResults;
 }

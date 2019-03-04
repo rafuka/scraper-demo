@@ -8,6 +8,7 @@ module.exports = {
 async function oakScraper(puppeteer, url) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
+    
     console.log('Navigating to page ' + url);
     await page.goto(url);
     await page.waitForSelector('a.paginate_button.next'); // Waits for table to be available

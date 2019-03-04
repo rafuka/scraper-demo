@@ -27,6 +27,7 @@ else if (process.argv[3] && process.argv[3] != '--output') {
     logUsage(scrapeStrategies);
 }
 
+
 scraper(scrapeStrategy);
 
 async function scraper(scrapeStrategy) {  

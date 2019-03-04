@@ -28,8 +28,6 @@ else if (process.argv[3] && process.argv[3] != '--output') {
 }
 
 
-scraper(scrapeStrategy);
-
 async function scraper(scrapeStrategy) {  
     // TODO: Check if robots.txt exists and make sure the url is not disallowed.
 
@@ -68,3 +66,5 @@ function logUsage(strats) {
     console.log('===============');
     process.exit();
 }
+
+scraper(scrapeStrategy);
